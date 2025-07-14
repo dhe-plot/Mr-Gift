@@ -23,6 +23,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // For now, don't use ClerkProvider until properly configured
   return (
     <html lang="en">
       <body
