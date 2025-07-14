@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr Gift - Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .status {
+            font-size: 1.2em;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 255, 0, 0.2);
+            border-radius: 10px;
+            border: 2px solid rgba(0, 255, 0, 0.5);
+        }
+        .info {
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+        .ports {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎁 Mr Gift App</h1>
+        <div class="status">
+            ✅ Server is Running Successfully!
+        </div>
+        <div class="info">
+            <p>Your Mr Gift application is now accessible!</p>
+            <p>This is a test page to verify connectivity.</p>
+        </div>
+        <div class="ports">
+            <h3>Available Access Points:</h3>
+            <p>🌐 Next.js Dev Server: <strong>Port 8080</strong></p>
+            <p>📁 Static Files: <strong>Port 8000</strong></p>
+            <p>🔗 Main App: <strong>localhost:8080</strong></p>
+        </div>
+        <div class="info">
+            <p>Ready to build your gifting platform with:</p>
+            <ul style="text-align: left; display: inline-block;">
+                <li>User Authentication (Clerk)</li>
+                <li>Featured Stories</li>
+                <li>Payment Integration (Stripe)</li>
+                <li>Chatbot Features</li>
+                <li>Enhanced UI Components</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
