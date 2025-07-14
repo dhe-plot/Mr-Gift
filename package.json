@@ -1,0 +1,13 @@
+{
+  "name": "mr-gift-root",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd mr-gift && npm install && npm run build",
+    "start": "cd mr-gift && npm start",
+    "dev": "cd mr-gift && npm run dev"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}

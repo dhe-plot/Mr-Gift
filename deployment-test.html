@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Mr Gift - Deployment Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .status {
+            font-size: 1.2em;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 255, 0, 0.2);
+            border-radius: 10px;
+            border: 2px solid rgba(0, 255, 0, 0.5);
+        }
+        .commit {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        .issue {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid rgba(255, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .fix-steps {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .fix-steps ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .fix-steps li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎁 Mr Gift</h1>
+        
+        <div class="issue">
+            ⚠️ DEPLOYMENT ISSUE DETECTED
+        </div>
+        
+        <div class="commit">
+            <strong>Expected Commit:</strong> 178a64a<br>
+            <strong>Current Status:</strong> Vercel deploying old code<br>
+            <strong>Issue:</strong> Root directory configuration
+        </div>
+
+        <div class="fix-steps">
+            <h3>🔧 Fix Steps:</h3>
+            <ol>
+                <li><strong>Go to Vercel Dashboard</strong></li>
+                <li><strong>Settings → General</strong></li>
+                <li><strong>Set Root Directory:</strong> <code>mr-gift</code></li>
+                <li><strong>Framework:</strong> Next.js</li>
+                <li><strong>Build Command:</strong> <code>npm run build</code></li>
+                <li><strong>Output Directory:</strong> <code>.next</code></li>
+                <li><strong>Redeploy</strong> latest commit</li>
+            </ol>
+        </div>
+
+        <div style="margin-top: 30px; opacity: 0.8; font-size: 0.9em;">
+            <p><strong>If you can see this page, the root directory fix is working!</strong></p>
+            <p>Next step: Configure Vercel to use the <code>mr-gift</code> subdirectory</p>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <p><strong>Test URLs after fix:</strong></p>
+            <p>🏠 Homepage: <code>/</code></p>
+            <p>📱 Stories: <code>/stories</code></p>
+            <p>🎯 Dashboard: <code>/dashboard</code></p>
+        </div>
+    </div>
+
+    <script>
+        console.log('🎁 Mr Gift Deployment Test');
+        console.log('If you see this, static files are working!');
+        console.log('Next: Fix Vercel root directory to mr-gift/');
+    </script>
+</body>
+</html>
