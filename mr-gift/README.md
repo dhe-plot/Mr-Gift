@@ -1,5 +1,22 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+# 🎁 Mr Gift - Your Ultimate Gifting Platform
+
+A modern gifting platform with Instagram-like stories, user authentication, and enhanced UI components.
+
+## ✨ Features
+
+- 📱 **Instagram-like Stories** - Share and discover gifts through beautiful stories
+- 🔐 **User Authentication** - Secure sign-in with Clerk
+- 🎯 **User Dashboard** - Personalized experience with stats and quick actions
+- 🎨 **Enhanced UI** - Modern design with GlowCard components
+- 💳 **Payment Integration** - Stripe-powered transactions
+- 🤖 **AI Chatbot** - Intelligent gift recommendations
+
+## 🚀 Live Demo
+
+Visit: [mr-gift-frontend.vercel.app](https://mr-gift-frontend.vercel.app)
+
 ## Getting Started
 
 First, run the development server:
