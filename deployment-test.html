@@ -77,9 +77,10 @@
         </div>
         
         <div class="commit">
-            <strong>Expected Commit:</strong> 178a64a<br>
-            <strong>Current Status:</strong> Vercel deploying old code<br>
-            <strong>Issue:</strong> Root directory configuration
+            <strong>Expected Commit:</strong> LATEST<br>
+            <strong>Current Status:</strong> Testing deployment fix<br>
+            <strong>Issue:</strong> Root directory configuration<br>
+            <strong>Time:</strong> <span id="timestamp"></span>
         </div>
 
         <div class="fix-steps">
@@ -109,9 +110,11 @@
     </div>
 
     <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
         console.log('🎁 Mr Gift Deployment Test');
         console.log('If you see this, static files are working!');
         console.log('Next: Fix Vercel root directory to mr-gift/');
+        console.log('Timestamp:', new Date().toISOString());
     </script>
 </body>
 </html>
