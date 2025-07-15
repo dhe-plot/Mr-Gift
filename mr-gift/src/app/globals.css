@@ -1,4 +1,12 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./compatibility.css";
+@import "./overrides.css";
+@import "./tailwind-fixes.css";
+@import "./critical-fixes.css";
+@import "./vendor-prefix-fixes.css";
 
 :root {
   --background: #ffffff;
@@ -36,4 +44,44 @@ body {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Cross-browser compatibility utilities */
+.backdrop-blur {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.backdrop-blur-lg {
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.user-select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.filter-blur {
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+}
+
+.text-size-adjust-none {
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Forced color adjust for better accessibility */
+.forced-color-adjust-auto {
+  forced-color-adjust: auto;
 }

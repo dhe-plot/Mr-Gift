@@ -1,0 +1,273 @@
+/* Tailwind CSS Compatibility Fixes */
+/* This file MUST load AFTER Tailwind CSS to override its generated styles */
+
+/* 
+ * CRITICAL FIX: Tailwind CSS v4 generates -webkit-text-size-adjust without standard property
+ * This overrides the Tailwind base styles with proper vendor prefixes
+ */
+:host,
+html {
+  -webkit-text-size-adjust: 100% !important;
+  -moz-text-size-adjust: 100% !important;
+  -ms-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+}
+
+/* 
+ * CRITICAL FIX: Tailwind backdrop-filter utilities missing -webkit- prefix
+ * Override all backdrop-filter related classes
+ */
+.backdrop-filter {
+  -webkit-backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, ) !important;
+  backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, ) !important;
+}
+
+.backdrop-blur-none {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(4px) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+.backdrop-blur {
+  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.backdrop-blur-md {
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+.backdrop-blur-lg {
+  -webkit-backdrop-filter: blur(16px) !important;
+  backdrop-filter: blur(16px) !important;
+}
+
+.backdrop-blur-xl {
+  -webkit-backdrop-filter: blur(24px) !important;
+  backdrop-filter: blur(24px) !important;
+}
+
+/* 
+ * CRITICAL FIX: Tailwind filter utilities missing standard filter property
+ * Override all filter related classes
+ */
+.filter {
+  -webkit-filter: var(--tw-blur, ) var(--tw-brightness, ) var(--tw-contrast, ) var(--tw-grayscale, ) var(--tw-hue-rotate, ) var(--tw-invert, ) var(--tw-saturate, ) var(--tw-sepia, ) var(--tw-drop-shadow, ) !important;
+  filter: var(--tw-blur, ) var(--tw-brightness, ) var(--tw-contrast, ) var(--tw-grayscale, ) var(--tw-hue-rotate, ) var(--tw-invert, ) var(--tw-saturate, ) var(--tw-sepia, ) var(--tw-drop-shadow, ) !important;
+}
+
+.blur {
+  -webkit-filter: blur(8px) !important;
+  filter: blur(8px) !important;
+}
+
+.brightness-50 {
+  -webkit-filter: brightness(0.5) !important;
+  filter: brightness(0.5) !important;
+}
+
+.brightness-75 {
+  -webkit-filter: brightness(0.75) !important;
+  filter: brightness(0.75) !important;
+}
+
+.brightness-100 {
+  -webkit-filter: brightness(1) !important;
+  filter: brightness(1) !important;
+}
+
+.brightness-125 {
+  -webkit-filter: brightness(1.25) !important;
+  filter: brightness(1.25) !important;
+}
+
+.contrast-50 {
+  -webkit-filter: contrast(0.5) !important;
+  filter: contrast(0.5) !important;
+}
+
+.contrast-75 {
+  -webkit-filter: contrast(0.75) !important;
+  filter: contrast(0.75) !important;
+}
+
+.contrast-100 {
+  -webkit-filter: contrast(1) !important;
+  filter: contrast(1) !important;
+}
+
+.contrast-125 {
+  -webkit-filter: contrast(1.25) !important;
+  filter: contrast(1.25) !important;
+}
+
+.grayscale {
+  -webkit-filter: grayscale(100%) !important;
+  filter: grayscale(100%) !important;
+}
+
+.invert {
+  -webkit-filter: invert(100%) !important;
+  filter: invert(100%) !important;
+}
+
+/* 
+ * CRITICAL FIX: User select utilities missing -webkit- prefix
+ * Override all user-select related classes
+ */
+.select-none {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+.select-text {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+.select-all {
+  -webkit-user-select: all !important;
+  -moz-user-select: all !important;
+  -ms-user-select: all !important;
+  user-select: all !important;
+}
+
+/* 
+ * CRITICAL FIX: Forced color adjust for Safari compatibility
+ */
+* {
+  forced-color-adjust: auto;
+}
+
+/* Safari fallback */
+@supports not (forced-color-adjust: auto) {
+  * {
+    color: inherit;
+    background-color: inherit;
+  }
+}
+
+/* 
+ * CRITICAL FIX: Transform utilities with vendor prefixes
+ */
+.transform {
+  -webkit-transform: var(--tw-rotate-x, ) var(--tw-rotate-y, ) var(--tw-rotate-z, ) var(--tw-skew-x, ) var(--tw-skew-y, ) !important;
+  transform: var(--tw-rotate-x, ) var(--tw-rotate-y, ) var(--tw-rotate-z, ) var(--tw-skew-x, ) var(--tw-skew-y, ) !important;
+}
+
+/* 
+ * CRITICAL FIX: Transition utilities with vendor prefixes
+ */
+.transition {
+  -webkit-transition: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
+  transition: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
+}
+
+.transition-all {
+  -webkit-transition: all !important;
+  transition: all !important;
+}
+
+.transition-colors {
+  -webkit-transition: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke !important;
+  transition: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke !important;
+}
+
+/* 
+ * CRITICAL FIX: Box shadow utilities with vendor prefixes
+ */
+.shadow-sm {
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+.shadow-lg {
+  -webkit-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 
+ * CRITICAL FIX: Flexbox utilities with vendor prefixes
+ */
+.flex {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.flex-col {
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -webkit-flex-direction: column !important;
+  -ms-flex-direction: column !important;
+  flex-direction: column !important;
+}
+
+.items-center {
+  -webkit-box-align: center !important;
+  -webkit-align-items: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+}
+
+.justify-center {
+  -webkit-box-pack: center !important;
+  -webkit-justify-content: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}
+
+.justify-between {
+  -webkit-box-pack: justify !important;
+  -webkit-justify-content: space-between !important;
+  -ms-flex-pack: justify !important;
+  justify-content: space-between !important;
+}
+
+/* 
+ * CRITICAL FIX: Grid utilities with vendor prefixes
+ */
+.grid {
+  display: -ms-grid !important;
+  display: grid !important;
+}
+
+/* 
+ * CRITICAL FIX: Appearance utilities with vendor prefixes
+ */
+.appearance-none {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* 
+ * CRITICAL FIX: Text decoration utilities with vendor prefixes
+ */
+.underline {
+  -webkit-text-decoration: underline !important;
+  text-decoration: underline !important;
+}
+
+.no-underline {
+  -webkit-text-decoration: none !important;
+  text-decoration: none !important;
+}
+
+/* 
+ * CRITICAL FIX: Font smoothing utilities
+ */
+.antialiased {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
