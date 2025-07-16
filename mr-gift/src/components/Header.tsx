@@ -1,11 +1,56 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { AuthButton } from './auth/AuthButton';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userData, setUserData] = useState<{
+    firstName?: string;
+    lastName?: string;
+    fullName?: string;
+    userType?: string;
+    personal?: { firstName?: string; imageUrl?: string };
+    imageUrl?: string;
+  } | null>(null);
+
+  // Check for existing user data on component mount and listen for changes
+  useEffect(() => {
+    const checkUserData = () => {
+      const savedUserData = localStorage.getItem('mrGiftUserData');
+      if (savedUserData) {
+        const parsedData = JSON.parse(savedUserData);
+        setUserData(parsedData);
+        setIsAuthenticated(true);
+      } else {
+        setUserData(null);
+        setIsAuthenticated(false);
+      }
+    };
+
+    // Check on mount
+    checkUserData();
+
+    // Listen for storage changes (when user completes onboarding)
+    window.addEventListener('storage', checkUserData);
+
+    // Custom event for same-tab updates
+    window.addEventListener('userDataUpdated', checkUserData);
+
+    return () => {
+      window.removeEventListener('storage', checkUserData);
+      window.removeEventListener('userDataUpdated', checkUserData);
+    };
+  }, []);
+
+
+
+  const handleOpenPreferences = () => {
+    // Handle preferences modal opening
+    console.log('Opening preferences...');
+  };
 
   // For now, authentication is disabled until Clerk is properly configured
 
@@ -56,7 +101,11 @@ export default function Header() {
             </button>
 
             {/* Authentication Button */}
-            <AuthButton />
+            <AuthButton
+              onOpenPreferences={handleOpenPreferences}
+              isAuthenticated={isAuthenticated}
+              userData={userData}
+            />
 
             {/* Mobile Menu Button */}
             <button
@@ -96,7 +145,11 @@ export default function Header() {
               Get Started
             </button>
             <div className="pt-4 border-t border-border">
-              <AuthButton />
+              <AuthButton
+                onOpenPreferences={handleOpenPreferences}
+                isAuthenticated={isAuthenticated}
+                userData={userData}
+              />
             </div>
           </div>
         </div>

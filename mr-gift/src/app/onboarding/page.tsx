@@ -64,6 +64,9 @@ export default function OnboardingPage() {
     // Save to localStorage for demo purposes
     localStorage.setItem('mrGiftUserData', JSON.stringify(completeData));
 
+    // Dispatch custom event to update header
+    window.dispatchEvent(new Event('userDataUpdated'));
+
     console.log('Onboarding completed:', completeData);
     router.push('/dashboard');
   };

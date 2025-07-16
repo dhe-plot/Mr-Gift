@@ -29,6 +29,10 @@ export default function Page() {
       };
 
       localStorage.setItem('mrGiftUserData', JSON.stringify(demoUserData));
+
+      // Dispatch custom event to update header
+      window.dispatchEvent(new Event('userDataUpdated'));
+
       router.push('/dashboard');
     }, 1000);
   };

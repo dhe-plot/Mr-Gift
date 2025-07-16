@@ -7,34 +7,29 @@ import { User, LogIn, UserPlus, ChevronDown, Settings } from 'lucide-react';
 
 interface AuthButtonProps {
   onOpenPreferences?: () => void;
-}
-
-export function AuthButton({ onOpenPreferences }: AuthButtonProps) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userData, setUserData] = useState<{
+  isAuthenticated?: boolean;
+  userData?: {
     firstName?: string;
     lastName?: string;
+    fullName?: string;
     userType?: string;
     personal?: { firstName?: string; imageUrl?: string };
     imageUrl?: string;
-  } | null>(null);
+  } | null;
+}
 
-  // Check for existing user data on component mount
-  useEffect(() => {
-    const savedUserData = localStorage.getItem('mrGiftUserData');
-    if (savedUserData) {
-      const parsedData = JSON.parse(savedUserData);
-      setUserData(parsedData);
-      setIsAuthenticated(true);
-    }
-  }, []);
+export function AuthButton({ onOpenPreferences, isAuthenticated: propIsAuthenticated, userData: propUserData }: AuthButtonProps) {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Use props for authentication state, fallback to local state for demo
+  const isAuthenticated = propIsAuthenticated || false;
+  const userData = propUserData || null;
+
+
 
   const handleSignOut = () => {
     // Clear localStorage and reset state
     localStorage.removeItem('mrGiftUserData');
-    setIsAuthenticated(false);
-    setUserData(null);
     setIsDropdownOpen(false);
     // Reload the page to reset all state
     window.location.reload();
@@ -63,14 +58,14 @@ export function AuthButton({ onOpenPreferences }: AuthButtonProps) {
           className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
         >
           <Image
-            src={userData?.personal?.imageUrl || userData?.imageUrl || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=32&h=32&q=80'}
-            alt={userData?.personal?.firstName || userData?.firstName || 'User'}
+            src={userData?.imageUrl || userData?.personal?.imageUrl || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=32&h=32&q=80'}
+            alt={userData?.fullName || userData?.personal?.firstName || 'User'}
             width={32}
             height={32}
             className="w-8 h-8 rounded-full border-2 border-blue-500"
           />
           <span className="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-300">
-            {userData?.personal?.firstName || userData?.firstName || 'User'}
+            {userData?.firstName || userData?.personal?.firstName || userData?.firstName || 'User'}
           </span>
           <ChevronDown className="w-4 h-4 text-gray-500" />
         </button>
@@ -79,11 +74,10 @@ export function AuthButton({ onOpenPreferences }: AuthButtonProps) {
           <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50">
             <div className="p-3 border-b border-gray-200 dark:border-gray-700">
               <p className="text-sm font-medium text-gray-900 dark:text-white">
-                {userData?.personal?.firstName || userData?.firstName || 'Demo User'}
+                {userData?.fullName || userData?.personal?.firstName || userData?.firstName || 'Demo User'}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                {userData?.userType === 'both' ? 'Buyer & Seller' : 
-                 userData?.userType === 'seller' ? 'Seller' : 'Gift Explorer'}
+                {userData?.userType === 'both' ? 'Buyer & Seller' : userData?.userType === 'seller' ? 'Seller' : 'Gift Explorer'}
               </p>
             </div>
             <div className="py-1">
