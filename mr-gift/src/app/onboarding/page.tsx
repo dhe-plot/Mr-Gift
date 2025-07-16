@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-// import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+import { UserTypeSelection } from '@/components/onboarding/UserTypeSelection';
 
 export default function OnboardingPage() {
-  // const { user } = useUser();
   const user = { firstName: 'User' }; // Temporary fallback
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0); // Start with user type selection
+  const [userType, setUserType] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     interests: [] as string[],
     giftingStyle: '',
@@ -37,6 +37,11 @@ export default function OnboardingPage() {
     { id: 'luxury', label: 'Luxury ($500+)', emoji: '👑' },
   ];
 
+  const handleUserTypeSelect = (type: string) => {
+    setUserType(type);
+    setCurrentStep(1); // Move to interests step
+  };
+
   const handleInterestToggle = (interest: string) => {
     setFormData(prev => ({
       ...prev,
@@ -47,13 +52,27 @@ export default function OnboardingPage() {
   };
 
   const handleComplete = () => {
-    // Here you would typically save the onboarding data to your backend
-    console.log('Onboarding completed:', formData);
+    // Save the complete onboarding data including user type
+    const completeData = {
+      ...formData,
+      userType,
+      firstName: user?.firstName || 'User',
+      onboardingCompleted: true,
+      createdAt: new Date().toISOString()
+    };
+
+    // Save to localStorage for demo purposes
+    localStorage.setItem('mrGiftUserData', JSON.stringify(completeData));
+
+    console.log('Onboarding completed:', completeData);
     router.push('/dashboard');
   };
 
   const renderStep = () => {
     switch (currentStep) {
+      case 0:
+        return <UserTypeSelection onSelect={handleUserTypeSelect} />;
+
       case 1:
         return (
           <div className="space-y-6">
@@ -161,6 +180,19 @@ export default function OnboardingPage() {
     }
   };
 
+  // Don't show progress bar for user type selection
+  if (currentStep === 0) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-20">
+        <div className="max-w-6xl mx-auto px-4 py-8">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+            {renderStep()}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-20">
       <div className="max-w-2xl mx-auto px-4 py-8">
@@ -175,7 +207,7 @@ export default function OnboardingPage() {
             </span>
           </div>
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-            <div 
+            <div
               className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
               style={{ width: `${(currentStep / 3) * 100}%` }}
             />
@@ -189,13 +221,13 @@ export default function OnboardingPage() {
           {/* Navigation */}
           <div className="flex justify-between mt-8">
             <button
-              onClick={() => setCurrentStep(prev => Math.max(1, prev - 1))}
+              onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))}
               disabled={currentStep === 1}
               className="px-6 py-2 text-gray-600 dark:text-gray-400 disabled:opacity-50 disabled:cursor-not-allowed hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
             >
               Back
             </button>
-            
+
             {currentStep < 3 ? (
               <button
                 onClick={() => setCurrentStep(prev => prev + 1)}

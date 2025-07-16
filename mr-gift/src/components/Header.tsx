@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-// import { SignInButton, UserButton, useUser } from '@clerk/nextjs';
 import Link from 'next/link';
+import { AuthButton } from './auth/AuthButton';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -55,28 +55,8 @@ export default function Header() {
               Get Started
             </button>
 
-            {/* Authentication Buttons */}
-            <div className="flex items-center gap-2">
-              <Link href="/sign-in">
-                <button className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-                  Sign In
-                </button>
-              </Link>
-            </div>
+            {/* Authentication Button */}
+            <AuthButton />
 
             {/* Mobile Menu Button */}
             <button
@@ -116,25 +96,7 @@ export default function Header() {
               Get Started
             </button>
             <div className="pt-4 border-t border-border">
-              <Link href="/sign-in">
-                <button className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors shadow-sm">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-                  Sign In
-                </button>
-              </Link>
+              <AuthButton />
             </div>
           </div>
         </div>
