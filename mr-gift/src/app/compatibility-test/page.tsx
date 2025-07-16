@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Browser Compatibility Test - Mr Gift',
@@ -214,12 +215,12 @@ export default function CompatibilityTestPage() {
         </div>
 
         <div className="mt-6 text-center">
-          <a 
+          <Link
             href="/"
             className="inline-block bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-lg transition-colors backdrop-blur-sm"
           >
             ← Back to Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -40,7 +40,7 @@
             }
           }
         });
-      } catch (e) {
+      } catch {
         // Ignore cross-origin stylesheet errors
         console.log('Skipping cross-origin stylesheet');
       }

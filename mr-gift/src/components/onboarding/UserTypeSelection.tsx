@@ -83,7 +83,7 @@ export function UserTypeSelection({ onSelect }: UserTypeSelectionProps) {
           Welcome to Mr Gift! 🎁
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Let's personalize your experience. How would you like to use Mr Gift?
+          Let&apos;s personalize your experience. How would you like to use Mr Gift?
         </p>
       </div>
 
@@ -183,7 +183,7 @@ export function UserTypeSelection({ onSelect }: UserTypeSelectionProps) {
         
         {selectedType && (
           <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-            Don't worry, you can always change this later in your settings
+            Don&apos;t worry, you can always change this later in your settings
           </p>
         )}
       </div>

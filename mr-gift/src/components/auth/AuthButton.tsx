@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { User, LogIn, UserPlus, ChevronDown, Settings } from 'lucide-react';
 
 interface AuthButtonProps {
@@ -11,7 +12,13 @@ interface AuthButtonProps {
 export function AuthButton({ onOpenPreferences }: AuthButtonProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<{
+    firstName?: string;
+    lastName?: string;
+    userType?: string;
+    personal?: { firstName?: string; imageUrl?: string };
+    imageUrl?: string;
+  } | null>(null);
 
   // Check for existing user data on component mount
   useEffect(() => {
@@ -55,9 +62,11 @@ export function AuthButton({ onOpenPreferences }: AuthButtonProps) {
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
         >
-          <img
+          <Image
             src={userData?.personal?.imageUrl || userData?.imageUrl || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=32&h=32&q=80'}
             alt={userData?.personal?.firstName || userData?.firstName || 'User'}
+            width={32}
+            height={32}
             className="w-8 h-8 rounded-full border-2 border-blue-500"
           />
           <span className="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -131,7 +140,7 @@ export function AuthButton({ onOpenPreferences }: AuthButtonProps) {
               Welcome to Mr Gift! 🎁
             </p>
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              Choose how you'd like to get started
+              Choose how you&apos;d like to get started
             </p>
           </div>
           <div className="py-1">
