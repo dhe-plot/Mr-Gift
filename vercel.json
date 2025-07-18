@@ -1,5 +1,10 @@
 {
   "framework": "nextjs",
   "buildCommand": "cd mr-gift && npm run build",
-  "installCommand": "cd mr-gift && npm install"
+  "installCommand": "cd mr-gift && npm install",
+  "functions": {
+    "mr-gift/src/app/api/**/route.{js,ts}": {
+      "runtime": "nodejs18.x"
+    }
+  }
 }
