@@ -1,11 +1,12 @@
 {
-  "buildCommand": "cd mr-gift && npm install && npm run build",
-  "outputDirectory": "mr-gift/.next",
-  "framework": "nextjs",
-  "installCommand": "cd mr-gift && npm install",
-  "functions": {
-    "mr-gift/src/app/**/*.{js,ts,jsx,tsx}": {
-      "runtime": "nodejs18.x"
+  "version": 2,
+  "buildCommand": "cd mr-gift-app && npm install && npm run build",
+  "outputDirectory": "mr-gift-app/dist",
+  "installCommand": "cd mr-gift-app && npm install",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
-  }
+  ]
 }
