@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "buildCommand": "cd mr-gift-app && npm install && npm run build",
-  "outputDirectory": "mr-gift-app/dist",
-  "installCommand": "cd mr-gift-app && npm install",
+  "buildCommand": "cd mr-gift && npm install && npm run build",
+  "outputDirectory": "mr-gift/.next",
+  "installCommand": "cd mr-gift && npm install",
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ]
 }
