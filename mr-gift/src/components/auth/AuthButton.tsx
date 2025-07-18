@@ -3,6 +3,128 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { User, LogIn, ChevronDown, Settings } from 'lucide-react';
+
+interface AuthButtonProps {
+  onOpenPreferences?: () => void;
+  isAuthenticated?: boolean;
+  userData?: {
+    firstName?: string;
+    lastName?: string;
+    fullName?: string;
+    userType?: string;
+    personal?: { firstName?: string; imageUrl?: string };
+    imageUrl?: string;
+  } | null;
+}
+
+export function AuthButton({ onOpenPreferences, isAuthenticated: propIsAuthenticated, userData: propUserData }: AuthButtonProps) {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const isAuthenticated = propIsAuthenticated || false;
+  const userData = propUserData || null;
+
+  const handleSignOut = () => {
+    localStorage.removeItem('mrGiftUserData');
+    setIsDropdownOpen(false);
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.auth-dropdown')) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [isDropdownOpen]);
+
+  if (isAuthenticated && userData) {
+    return (
+      <div className="relative auth-dropdown">
+        <button
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        >
+          <Image
+            src={userData?.imageUrl || userData?.personal?.imageUrl || 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=32&h=32&q=80'}
+            alt={userData?.fullName || userData?.personal?.firstName || 'User'}
+            width={32}
+            height={32}
+            className="w-8 h-8 rounded-full border-2 border-blue-500"
+          />
+          <span className="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-300">
+            {userData?.firstName || userData?.personal?.firstName || userData?.firstName || 'User'}
+          </span>
+          <ChevronDown className="w-4 h-4 text-gray-500" />
+        </button>
+
+        {isDropdownOpen && (
+          <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50">
+            <div className="p-3 border-b border-gray-200 dark:border-gray-700">
+              <p className="text-sm font-medium text-gray-900 dark:text-white">
+                {userData?.fullName || userData?.personal?.firstName || userData?.firstName || 'Demo User'}
+              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                {userData?.userType === 'both' ? 'Buyer & Seller' : userData?.userType === 'seller' ? 'Seller' : 'Gift Explorer'}
+              </p>
+            </div>
+            <div className="py-1">
+              {onOpenPreferences && (
+                <button
+                  onClick={() => {
+                    onOpenPreferences();
+                    setIsDropdownOpen(false);
+                  }}
+                  className="flex items-center gap-2 w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  <Settings className="w-4 h-4" />
+                  Preferences
+                </button>
+              )}
+              <Link href="/dashboard">
+                <button
+                  onClick={() => setIsDropdownOpen(false)}
+                  className="flex items-center gap-2 w-full px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  <User className="w-4 h-4" />
+                  Dashboard
+                </button>
+              </Link>
+              <button
+                onClick={handleSignOut}
+                className="flex items-center gap-2 w-full px-3 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"
+              >
+                <LogIn className="w-4 h-4" />
+                Sign Out
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Single button that goes directly to sign-in page
+  return (
+    <Link href="/sign-in">
+      <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
+        <User className="w-4 h-4" />
+        <span className="font-medium">Sign In</span>
+      </button>
+    </Link>
+  );
+}
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { User, LogIn, UserPlus, ChevronDown, Settings } from 'lucide-react';
 
 interface AuthButtonProps {
