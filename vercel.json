@@ -1,12 +1,5 @@
 {
-  "version": 2,
-  "buildCommand": "cd mr-gift && npm install && npm run build",
-  "outputDirectory": "mr-gift/.next",
-  "installCommand": "cd mr-gift && npm install",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
-  ]
+  "framework": "nextjs",
+  "buildCommand": "cd mr-gift && npm run build",
+  "installCommand": "cd mr-gift && npm install"
 }
